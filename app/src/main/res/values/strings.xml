@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Smart Address Book</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="address">Address</string>
+    <string name="phone">12345678</string>
+    <string name="address_details">Address details</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+</resources>

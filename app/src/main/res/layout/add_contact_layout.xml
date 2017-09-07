@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:layout_marginTop="20dp"
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/firstname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="15dp"
+        android:inputType="textPersonName"
+        android:hint="Firstname" />
+
+
+
+
+    <EditText
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/lastname"
+        android:layout_marginBottom="15dp"
+        android:layout_width="match_parent"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Lastname" />
+
+
+
+    <RadioGroup
+        android:id="@+id/sex_group"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/male"
+            android:layout_marginRight="20dp"
+            android:checked="true"
+            android:text="Male"
+            />
+
+
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/female"
+            android:text="Female"
+            />
+
+
+    </RadioGroup>
+
+
+
+
+    <EditText
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/address"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="15dp"
+        android:textSize="15sp"
+        android:textColor="@android:color/black"
+        android:layout_height="wrap_content"
+        android:hint="Contact Address"
+        android:inputType="textImeMultiLine" />
+
+
+
+
+    <EditText
+        android:id="@+id/phone_number"
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:textSize="15sp"
+        android:hint="Phone number"
+        android:textColor="@android:color/black"
+        android:inputType="phone"
+        />
+
+
+</LinearLayout>

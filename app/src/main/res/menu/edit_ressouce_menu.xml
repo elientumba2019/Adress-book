@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- menu element that will be used on the layout of the single
+    contact fragment this will determine whether to edit the contact or delete
+    him or her from the list -->
+
+
+
+    <!-- menu edit opetion -->
+    <item
+        android:id="@+id/edit"
+        android:title="@string/edit"
+        android:icon="@drawable/edit_icon"
+        app:showAsAction="ifRoom|withText"
+        />
+
+
+    <!-- deete menu option -->
+    <item
+        android:id="@+id/delete"
+        android:iconTint="@android:color/holo_red_light"
+        android:title="@string/delete"
+        android:icon="@drawable/delete_icon"
+        app:showAsAction="ifRoom|withText"
+        />
+
+
+
+    </menu>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.elie.smartaddressbook">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+
+
+        <!-- first activity on Screen -->
+        <activity android:name=".activities.ContactListActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+
+
+        <!-- single contact activity -->
+        <activity android:name=".activities.SingleContactActivity"
+            android:parentActivityName=".activities.ContactListActivity"
+            android:label="Contact" />
+
+
+
+
+        <!-- add contact activity -->
+        <activity android:name=".activities.AddContactActivity"
+            android:label="New Contact"
+            android:parentActivityName=".activities.ContactListActivity"/>
+            />
+
+
+
+        <!-- Edit contact Activity -->
+        <activity android:name=".activities.EditContactActivity"
+            android:label="Edit Contact"
+            />
+        3
+    </application>
+
+</manifest>

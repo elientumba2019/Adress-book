@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstname"
+        android:text="@string/firstname"
+        android:layout_marginBottom="10dp"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        />
+
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastname"
+        android:text="@string/lastname"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="5dp"
+        android:textSize="20sp"
+        />
+
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:textSize="17sp"
+        android:text="Sex"
+        android:id="@+id/sex"
+        android:textColor="@android:color/black"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:text="@string/address"
+        android:textSize="18sp"
+        android:layout_marginBottom="3dp"
+        android:textColor="@android:color/holo_red_dark"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:id="@+id/address_detail"
+        android:textSize="15sp"
+        android:layout_marginBottom="8dp"
+        android:text = "@string/address_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:text="@string/phone"
+        android:id="@+id/phone"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="phone"/>
+
+
+
+
+</LinearLayout>
