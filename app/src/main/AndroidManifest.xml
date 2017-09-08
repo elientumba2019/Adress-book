@@ -26,8 +26,8 @@
 
         <!-- single contact activity -->
         <activity android:name=".activities.SingleContactActivity"
-            android:parentActivityName=".activities.ContactListActivity"
-            android:label="Contact" />
+            android:label="Contact"
+            />
 
 
 
@@ -36,7 +36,7 @@
         <activity android:name=".activities.AddContactActivity"
             android:label="New Contact"
             android:parentActivityName=".activities.ContactListActivity"/>
-            />
+
 
 
 
@@ -44,7 +44,7 @@
         <activity android:name=".activities.EditContactActivity"
             android:label="Edit Contact"
             />
-        3
+
     </application>
 
 </manifest>
