@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- alias resource that is to point to another resource-->
+<resources>
+    <item name="layout_to_put_on_screen" type="layout">@layout/activity_main</item>
+</resources>
