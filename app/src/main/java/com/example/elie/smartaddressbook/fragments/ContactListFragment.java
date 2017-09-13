@@ -1,11 +1,13 @@
 package com.example.elie.smartaddressbook.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.telecom.Call;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 
 
 /**
- * the contact list fragment class is respnsible for holding a
+ * the contact list fragment class is responsible for holding a
  * list of the person contact
  *
  */
@@ -36,7 +38,42 @@ public class ContactListFragment extends Fragment {
     private ArrayList<ContactModel> list; // = factory.getContactList(20);
 
 
+    //Callbacks variable
+    private Callbacks callbacks;
 
+
+    /**
+     * call backs interface that will be attached to an
+     * host activity , through which the fragment will
+     * be able to call its host activity's method
+     */
+    public interface Callbacks{
+        void onContactClicked(ContactModel contact);
+
+    }
+
+
+
+    /**
+     * Method to attach a fragment to
+     * its host activity
+     * @param context
+     */
+    public void onAttach(Context context){
+        super.onAttach(context);
+        callbacks = (Callbacks)context;
+
+    }
+
+
+    /**
+     * detaching the fragment from its host
+     * activity
+     */
+    public void onDetach(){
+        super.onDetach();
+        callbacks = null;
+    }
 
 
 
@@ -89,9 +126,7 @@ public class ContactListFragment extends Fragment {
      */
     private void updateUI() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         AdapterForContact adapterForContact = new AdapterForContact(list);
-
         recyclerView.setAdapter(adapterForContact);
     }
 
@@ -155,11 +190,7 @@ public class ContactListFragment extends Fragment {
          */
         @Override
         public void onClick(View view) {
-
-            Intent intent = SingleContactActivity.getActivityIntent(getActivity() , contact.getID());
-            startActivity(intent);
-            // Toast.makeText(getActivity() , contact.getFirstname() + " " + contact.getLastname() , Toast.LENGTH_LONG).show();
-
+            callbacks.onContactClicked(contact);
         }
     }
 

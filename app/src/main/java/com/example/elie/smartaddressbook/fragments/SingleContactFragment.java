@@ -1,5 +1,6 @@
 package com.example.elie.smartaddressbook.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,12 +12,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.elie.smartaddressbook.R;
 import com.example.elie.smartaddressbook.activities.EditContactActivity;
+import com.example.elie.smartaddressbook.activities.SingleContactActivity;
 import com.example.elie.smartaddressbook.database.ContactFactory;
 import com.example.elie.smartaddressbook.model.ContactModel;
 
@@ -33,15 +32,54 @@ import java.util.UUID;
 public class SingleContactFragment extends Fragment {
 
 
+
     //fragment argument key
     private static final String FRAGMENT_ARGUMENT_KEY = "key";
-
     private ContactModel contact;
     private TextView firstname , lastname , address , phone , sex;
     private RadioButton male , female;
-    UUID contactId;
+    private UUID contactId;
+
+    private Callbacks callbacks;
 
 
+
+
+    /**
+     * callbacks interface
+     */
+    public interface Callbacks{
+        void onUpdateClicked(ContactModel model);
+        void onDeleteCliked(ContactModel contact , SingleContactFragment fragment);
+    }
+
+
+
+    /**
+     * attaching the fragment to its host activity
+     * so that it can be able to invoke methods
+     * contained in its host activity
+     * @param context
+     */
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        if(getActivity().findViewById(R.id.container_detail) != null) {
+            callbacks = (Callbacks) context;
+        }
+    }
+
+
+
+    /**
+     * detaching a fragment from its host activity
+     */
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callbacks = null;
+    }
 
 
 
@@ -81,8 +119,6 @@ public class SingleContactFragment extends Fragment {
         setHasOptionsMenu(true);
         return view;
     }
-
-
 
 
 
@@ -162,6 +198,7 @@ public class SingleContactFragment extends Fragment {
 
 
 
+
     /**
      * even tp be trigered when either element
      * of the menu is being clciked
@@ -174,13 +211,34 @@ public class SingleContactFragment extends Fragment {
         switch (item.getItemId()){
 
             case R.id.edit : {
-                Intent intent = EditContactActivity.getActivityIntent(getActivity() , contact.getID());
-                startActivity(intent);
+
+                //if the app is being used on a phone
+                if(isOnPhone()){
+                    Intent intent = EditContactActivity.getActivityIntent(getActivity() , contact.getID());
+                    startActivity(intent);
+                }
+
+                //used on tablet
+                else{
+                    callbacks.onUpdateClicked(contact);
+                }
+
                 return true;
             }
 
+
+
             case R.id.delete : {
-                deleteContact();
+
+                if(isOnPhone()){
+                    ContactFactory.getFactoryInstance(getActivity()).deleteContact(contact.getID());
+                    getActivity().finish();
+                }
+
+                else{
+                    callbacks.onDeleteCliked(contact , SingleContactFragment.this);
+                }
+
                 return true;
             }
 
@@ -192,6 +250,16 @@ public class SingleContactFragment extends Fragment {
 
 
 
+    /**
+     * determines whether the app is being used on a mobile
+     * phone or on a table
+     * @return
+     */
+    private boolean isOnPhone() {
+        return getActivity().findViewById(R.id.container_detail) == null;
+    }
+
+
 
 
     /**
@@ -199,8 +267,8 @@ public class SingleContactFragment extends Fragment {
      */
     private void deleteContact(){
         ContactFactory.getFactoryInstance(getActivity()).deleteContact(contact.getID());
-        getActivity().finish();
     }
+
 
 
 

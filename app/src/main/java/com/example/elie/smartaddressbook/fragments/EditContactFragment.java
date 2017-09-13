@@ -1,5 +1,6 @@
 package com.example.elie.smartaddressbook.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -41,12 +42,36 @@ public class EditContactFragment extends Fragment {
     ContactModel contact;
 
 
+    private Callbacks callbacks;
 
+
+
+    public interface Callbacks{
+        void onSavedButtonCliked(EditContactFragment fragment);
+    }
+
+
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if(getActivity().findViewById(R.id.container_detail) != null){
+            callbacks = (Callbacks)context;
+        }
+
+    }
+
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callbacks = null;
+    }
 
     /**
      * oncreate for initialization prior starting an
      * activity
-     * or fragment
+     * or fragment 
      * @param savedInstanceState
      */
     @Override
@@ -177,7 +202,13 @@ public class EditContactFragment extends Fragment {
 
             case R.id.edit_save :
                 ContactFactory.getFactoryInstance(getActivity()).updateContact(getContact());
-                getActivity().finish();
+                if(getActivity().findViewById(R.id.container_detail) == null){
+                    getActivity().finish();
+                }
+
+                else{
+                    callbacks.onSavedButtonCliked(EditContactFragment.this);
+                }
                 return true;
 
 
