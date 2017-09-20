@@ -45,13 +45,21 @@ public class EditContactFragment extends Fragment {
     private Callbacks callbacks;
 
 
-
+    /**
+     * interface call enabled when
+     * the user saves a contact
+     */
     public interface Callbacks{
         void onSavedButtonCliked(EditContactFragment fragment);
+        void onSaved();
     }
 
 
-
+    /**
+     * attaching the call back to its
+     * hosting activity
+     * @param context
+     */
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -62,11 +70,21 @@ public class EditContactFragment extends Fragment {
     }
 
 
+
+
+    /**
+     * detaching the fragment from
+     * its host
+     */
     @Override
     public void onDetach() {
         super.onDetach();
         callbacks = null;
     }
+
+
+
+
 
     /**
      * oncreate for initialization prior starting an
@@ -208,6 +226,7 @@ public class EditContactFragment extends Fragment {
 
                 else{
                     callbacks.onSavedButtonCliked(EditContactFragment.this);
+                    callbacks.onSaved();
                 }
                 return true;
 

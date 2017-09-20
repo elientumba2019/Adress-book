@@ -36,6 +36,7 @@ public class ContactListFragment extends Fragment {
     private RecyclerView recyclerView;
     private ContactFactory factory; // = ContactFactory.getFactoryInstance(getActivity()); code canceled because the activity couldnt get got because inecistant
     private ArrayList<ContactModel> list; // = factory.getContactList(20);
+    private AdapterForContact adapter = null;
 
 
     //Callbacks variable
@@ -122,13 +123,35 @@ public class ContactListFragment extends Fragment {
 
 
     /**
+     * updates the layout whenever the a contact has been changed
+     * or whenever a contact has been deleted
+     */
+    public void update(){
+
+        list = ContactFactory.getFactoryInstance(getActivity()).getContactList();
+
+        if(adapter == null){
+            adapter = new AdapterForContact(list);
+            recyclerView.setAdapter(adapter);
+        }
+        else{
+            adapter.setContactModels(list);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+
+
+
+    /**
      * updates the UI
      */
-    private void updateUI() {
+    public void updateUI() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        AdapterForContact adapterForContact = new AdapterForContact(list);
-        recyclerView.setAdapter(adapterForContact);
+         adapter = new AdapterForContact(list);
+        recyclerView.setAdapter(adapter);
     }
+
 
 
 
@@ -204,6 +227,17 @@ public class ContactListFragment extends Fragment {
      * adapter for the recycler view for contact
      */
     public class AdapterForContact extends RecyclerView.Adapter<ViewHolderForContact>{
+
+
+        /**
+         * setter
+         * @param contactModels
+         */
+        public void setContactModels(ArrayList<ContactModel> contactModels) {
+            this.contactModels = contactModels;
+        }
+
+
 
 
         private ArrayList<ContactModel> contactModels;

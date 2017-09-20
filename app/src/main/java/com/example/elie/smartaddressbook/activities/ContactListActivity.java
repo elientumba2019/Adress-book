@@ -112,8 +112,22 @@ public class ContactListActivity extends MotherSingleActivity
         ContactFactory.getFactoryInstance(getApplicationContext()).deleteContact(contact.getID());
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().remove(fragment).commit();
+
+        //updating the layout
+        onSaved();
     }
 
+
+
+
+    /**
+     * called when  a user has clicked on the save button
+     */
+    @Override
+    public void onSaved() {
+        ContactListFragment fragment1 = (ContactListFragment)getSupportFragmentManager().findFragmentById(R.id.container);
+        fragment1.update();
+    }
 
 
 
