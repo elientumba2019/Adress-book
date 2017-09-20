@@ -346,4 +346,9 @@ public class ContactListFragment extends Fragment {
         list = factory.getContactList();
         update();
     }
+
+
+    public void bilomba(){
+        //hello world;
+    }
 }
