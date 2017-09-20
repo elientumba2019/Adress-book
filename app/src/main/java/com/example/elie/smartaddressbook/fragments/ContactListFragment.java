@@ -348,7 +348,5 @@ public class ContactListFragment extends Fragment {
     }
 
 
-    public void bilomba(){
-        //hello world;
-    }
+    
 }
