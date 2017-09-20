@@ -113,8 +113,9 @@ public class ContactListFragment extends Fragment {
 
         //getting the recycler view
         recyclerView = view.findViewById(R.id.contact_list_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        updateUI();
+        update();
 
         return  view;
     }
@@ -139,19 +140,6 @@ public class ContactListFragment extends Fragment {
             adapter.notifyDataSetChanged();
         }
     }
-
-
-
-
-    /**
-     * updates the UI
-     */
-    public void updateUI() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-         adapter = new AdapterForContact(list);
-        recyclerView.setAdapter(adapter);
-    }
-
 
 
 
@@ -356,6 +344,6 @@ public class ContactListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         list = factory.getContactList();
-        updateUI();
+        update();
     }
 }
